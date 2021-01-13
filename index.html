@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON Patient Parse</title>
+    </head>
+    <body>
+        <div id="PageText"></div>
+        <script>
+            fetch("patient.json") //Fetch the file
+                .then(response => response.json()) //Convert text-to-JSON 
+                .then(data => {console.log(data) //Get Data from json file
+
+                    var numConditions=0; //Store number of conditions the patient has
+            
+                    //loop through # of conditions
+                    for(var i = 0; i < data.conditions.length; i++){
+                        numConditions++
+                    }
+                    //Display as innerText on web app
+                    document.querySelector("#PageText").innerText="Name of patient: "+data.name.given+" "+data.name.family //Display full name 
+                    +"\n\nOrganization Name: "+data.managingOrganization.display //Display organization name
+                    +"\n\nGender: "+data.gender //Display gender
+                    +"\n\nNumber of conditions: "+numConditions //Display number of conditions
+                    +"\n\nList of conditions: "
+                    +"\n\n"+data.conditions[0]
+                    +"\n\n"+data.conditions[1]
+                    +"\n\n"+data.conditions[2]
+                })
+        </script>
+    </body>
+
+</html>
